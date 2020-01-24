@@ -1,5 +1,6 @@
 package clases;
 import java.awt.BorderLayout;
+
 import java.awt.EventQueue;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -7,6 +8,7 @@ import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JCheckBox;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
@@ -27,7 +29,7 @@ public class MiJframe extends JFrame{
 	private List<Persona> lstPersona;
 	private JMenuItem listar;
 	private JScrollPane scrollTabla;
-    
+	private DefaultTableModel modeloTabla;
     public MiJframe(){
     	lstPersona = new ArrayList<Persona>();
     	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -51,29 +53,17 @@ public class MiJframe extends JFrame{
     	contentPane = new JPanel();
     	contentPane.setBorder(new EmptyBorder(5,5,5,5));
     	contentPane.setLayout(new BorderLayout(0,0));
-        
-		DefaultTableModel modeloTabla = new DefaultTableModel();
+      
+		modeloTabla = new DefaultTableModel();
 		modeloTabla.addColumn("Nombre");
 		modeloTabla.addColumn("Apellido");
 		modeloTabla.addColumn("Edad");
 		modeloTabla.addColumn("Direccion");
 		modeloTabla.addColumn("Estado");
-		for(int i=0;i<lstPersona.size();i++) {
-			modeloTabla.addRow(new Object[]{lstPersona.get(i).getNombre(),
-					lstPersona.get(i).getApellido(),
-					lstPersona.get(i).getEdad(),
-					lstPersona.get(i).getDireccion(),
-					lstPersona.get(i).getEstado()});
-			/**modeloTabla.setValueAt(lstPersona.get(i).getNombre(),i+1,0);
-			modeloTabla.setValueAt(lstPersona.get(i).getApellido(),i+1,1);
-			modeloTabla.setValueAt(lstPersona.get(i).getEdad(), i+1, 2);
-			modeloTabla.setValueAt(lstPersona.get(i).getDireccion(), i+1, 3);
-			modeloTabla.setValueAt(lstPersona.get(i).getEstado(), i+1, 4);*/
-		}
 
 		
 		table = new JTable(modeloTabla);
-		modeloTabla.fireTableDataChanged();
+
         scrollTabla = new JScrollPane();
         scrollTabla.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollTabla.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -95,7 +85,19 @@ public class MiJframe extends JFrame{
     public void addPersona(Persona p){
         this.lstPersona.add(p);
     }
-
+    public void imprimirLista() {
+		for(int i=0;i<lstPersona.size();i++) {
+			String edad = String.valueOf(lstPersona.get(i).getEdad());
+			JCheckBox estado = new JCheckBox(" ",lstPersona.get(i).getEstado());
+			modeloTabla.addRow(new Object[]{lstPersona.get(i).getNombre(),
+											lstPersona.get(i).getApellido(),edad,
+											lstPersona.get(i).getDireccion(),estado});
+		}
+		modeloTabla.fireTableDataChanged();
+    }
+    public DefaultTableModel getModeloTabla() {
+    	return this.modeloTabla;
+    }
 	public JTable getTable() {
 		return table;
 	}

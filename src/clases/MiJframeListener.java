@@ -18,7 +18,8 @@ public class MiJframeListener implements ActionListener{
 			return;
 		}
 		if(e.getSource() == frame.getListar()){
-			frame.getTable().setVisible(true);
+			frame.getModeloTabla().setRowCount(0);
+			frame.imprimirLista();
 		}
 	}
 }

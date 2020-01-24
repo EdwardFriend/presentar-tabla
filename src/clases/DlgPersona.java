@@ -10,6 +10,7 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -27,7 +28,7 @@ public class DlgPersona extends JDialog{
     private JPanel panel5;
     private JTextField text1;
     private JTextField text2;
-    private JTextField text3;
+    private JComboBox text3;
     private JTextField text4;
     private JCheckBox estado;
     private JPanel pnlCentro;
@@ -55,8 +56,15 @@ public class DlgPersona extends JDialog{
         panel2.add(text2);
         
         panel3 = new JPanel();
-        text3 = new JTextField();
-        text3.setColumns(5);
+        String [] edad = new String[100];
+        for(int i=0;i<edad.length;i++) {
+        	edad[i]=String.valueOf(i);
+        	if(i==0) {
+        		edad[i] = "--Edad--";
+        	}
+        }
+        text3 = new JComboBox(edad);
+        text3.setSelectedIndex(0);
         panel3.add(new JLabel("Edad: "));
         panel3.add(text3);
         
@@ -126,7 +134,7 @@ public class DlgPersona extends JDialog{
     	 * 
     	 * @return this.text3 to get
     	 */
-        public JTextField getText3() {
+        public JComboBox getText3() {
         	return this.text3;
         }
     	/**

@@ -8,7 +8,6 @@ import javax.swing.*;
 
 public class ListenerDialog implements ActionListener{
     private DlgPersona dialogo;
-    public int cont;
     public ListenerDialog(DlgPersona dialogo){
         this.dialogo=dialogo;
     }
@@ -17,19 +16,18 @@ public class ListenerDialog implements ActionListener{
         if(e.getSource()==dialogo.getOk()){
             String nombre=dialogo.getText1().getText();
             String apellido=dialogo.getText2().getText();
-            String edad = dialogo.getText3().getText();
+            int edad =Integer.valueOf(dialogo.getText3().getSelectedItem().toString());
             String direccion = dialogo.getText4().getText();
             boolean estado=dialogo.getEstado().isSelected();
             
             Persona p=new Persona(nombre,apellido,edad,direccion,estado);
 
-            dialogo.getFrame().addPersona(p);
-            cont+=1;            
+            dialogo.getFrame().addPersona(p);    
             dialogo.getText1().setText(" ");
             dialogo.getText1().requestFocus();
             dialogo.getText2().setText(" ");
             dialogo.getText2().requestFocus();
-            dialogo.getText3().setText(" ");
+            dialogo.getText3().setSelectedItem(0);;
             dialogo.getText3().requestFocus();
             dialogo.getText4().setText(" ");
             dialogo.getText4().requestFocus();

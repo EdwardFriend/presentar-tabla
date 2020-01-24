@@ -13,14 +13,14 @@ public class Persona {
 	 */
 	private String nombre;
 	private String apellido;
-	private String edad;
+	private int edad;
 	private String direccion;
 	private boolean estado;
 	/**
 	 * 
 	 * @Constructor @default
 	 */
-	public Persona(String nombre,String apellido,String edad, String direccion, boolean estado){
+	public Persona(String nombre,String apellido,int edad, String direccion, boolean estado){
 		this.nombre=nombre;
 		this.apellido=apellido;
 		this.direccion=direccion;
@@ -60,14 +60,14 @@ public class Persona {
 	 * 
 	 * @return
 	 */
-	public String getEdad() {
+	public int getEdad() {
 		return edad;
 	}
 	/**
 	 * 
 	 * @param edad
 	 */
-	public void setEdad(String edad) {
+	public void setEdad(int edad) {
 		this.edad = edad;
 	}
 	/**
